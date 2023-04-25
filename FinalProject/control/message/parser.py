@@ -45,5 +45,6 @@ def translate_command(jobs, command):
     job = get_job(jobs, command.job)
     action = get_action(job, command.action)
     parameter = command.parameter
-    return job, action, parameter
+    info = [command.type, command.color, command.license]
+    return job, action, parameter, info
 
