@@ -29,7 +29,7 @@ def threadFunction(type, color, license):
     auth_token = "f3603044422224d92baa45f4bfc4887a"
     client = Client(account_sid, auth_token)
     message = client.messages.create(
-    body="We found a {} {} vehical with license plate {} at: {}"
+    body="We found a {} {} vehicle with license plate {} at: {}"
         .format(color, type, license, "CWRU"),# location will be taken from GPS 
     from_="+18775255017",
     to="+14404977348")# this will be a designated authority number
