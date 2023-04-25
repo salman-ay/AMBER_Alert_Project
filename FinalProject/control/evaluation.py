@@ -4,8 +4,8 @@ from .message.parser import parse_command, translate_command
 def execute(jobs, command):
     status = "OK"
     try:
-        job, action, parameter = translate_command(jobs, command)
-        result = action(parameter)
+        job, action, parameter, vehicle_info = translate_command(jobs, command)
+        result = action(parameter, vehicle_info)
     except Exception as e:
         status = "ER"
         result = str(e)
