@@ -2,12 +2,15 @@ import re
 from collections import namedtuple
 from .exceptions import JobNotFound, ActionNotFound
 
-Command = namedtuple('Command', ['job', 'action', 'parameter'])
+Command = namedtuple('Command', ['job', 'action', 'parameter', 'type', 'color', 'license'])
 
 
 def extract_part(message: str):
-    parts = message.split(":")
-    return parts
+    return message.split(":")
+
+
+def extract_vehicle_information(message: str):
+    return message.split("-")
 
 
 def get_job(jobs, name: str):
@@ -29,9 +32,11 @@ def parse_command(message: str):
     commands = []
     for line in lines:
         parts = extract_part(line)
-        if len(parts) != 3:
+        if len(parts) != 4:
             continue
-        command = Command(parts[0].strip(), parts[1].strip(), parts[2].strip())
+        vehicle_parts = extract_vehicle_information(parts[3].strip())
+        command = Command(parts[0].strip(), parts[1].strip(), parts[2].strip(),
+                         vehicle_parts[0].strip(), vehicle_parts[1].strip(), vehicle_parts[2].strip())
         commands.append(command)
     return commands
 
