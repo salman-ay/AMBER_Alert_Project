@@ -17,7 +17,7 @@ class Scan():
         result = f"{self.name} scanning turned {STATUS} "
         return result
 
-def threadFunction(info):
+def threadFunction(type, color, license):
     # the scanning function goes here
     # while(STATUS == "on"):
     sleep(10)
@@ -29,7 +29,7 @@ def threadFunction(info):
     auth_token = "f3603044422224d92baa45f4bfc4887a"
     client = Client(account_sid, auth_token)
     message = client.messages.create(
-    body="We found the {} {} vehical with license plate {} at: {}"
-        .format(info[1], info[0], info[2], "CWRU"),# location will be taken from GPS 
+    body="We found a {} {} vehical with license plate {} at: {}"
+        .format(color, type, license, "CWRU"),# location will be taken from GPS 
     from_="+18775255017",
     to="+14404977348")# this will be a designated authority number
